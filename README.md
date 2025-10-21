@@ -1,7 +1,7 @@
 # Tracker Pet
 **Intro**
 
-Tracker Pet is a user friendly android app designed to be the bridge between pencil & paper to the digital world of note taking for animals. It allows owners to track their pets health and basic information while supporting multi-animal support. It's also designed with breeders in mind as well as you can enter every species without the need of a predetermined list. This allows for your app to be your digital animal notebook. All of this at the convince of your phone with a fully offline database allowing you to always monitor your pets everywhere & anywhere. 
+Tracker Pet is a user friendly android app designed to be the bridge between pencil & paper to the digital world of note taking for animals. It allows owners to track their pets health and basic information while supporting multi-animal data support. It's also designed with breeders in mind as well as you can enter every species without the need of a predetermined list. This allows for Tracker Pet to meet all your digital animal notebook needs. All of this at the convenience of your phone with a fully offline database allowing you to always monitor your pets everywhere & anywhere. 
 
 ---
 

@@ -173,20 +173,26 @@ Translate
 
 (You don't have to read this. This is only for a homework assignment with this repository) 
 
-- Briefly summarize the requirements and goals of the app you developed. What user needs was this app designed to address?
+*Briefly summarize the requirements and goals of the app you developed. What user needs was this app designed to address?*
+
 - The original requirement for this project was to create a simple weight tracking app. However, I wanted to make something more unique, and with my professor’s permission, I developed an expanded version that tracks pet health instead. Tracker Pet still fulfills the core requirement of tracking weight and using a database, but it goes further by offering additional features, a more advanced design, and a clean, user-friendly interface. The app was designed to meet the needs of pet owners who want an easy and reliable way to track their animals’ information and progress.
 
-- What screens and features were necessary to support user needs and produce a user-centered UI for the app? How did your UI designs keep users in mind? Why were your designs successful?
+*What screens and features were necessary to support user needs and produce a user-centered UI for the app? How did your UI designs keep users in mind? Why were your designs successful?*
+
 - I made the app with a novice tech user in mind. If my application can't be navigated by a 10 year old kid it needs to be simplified. I also ensured every feature was large by nature to ensure no accidental missclicks of the users. I also provided basic input scrubbing to avoid my user crashing the application.
   
-- How did you approach the process of coding your app? What techniques or strategies did you use? How could those techniques or strategies be applied in the future?
+*How did you approach the process of coding your app? What techniques or strategies did you use? How could those techniques or strategies be applied in the future?*
+
 - The first thing I did when coding my app was to design the features and make a list of features it needed and features I wanted. This helps avoid feature creep in the future as well as avoiding the feeling of being "stuck".
   
-- How did you test to ensure your code was functional? Why is this process important, and what did it reveal?
+*How did you test to ensure your code was functional? Why is this process important, and what did it reveal?*
+
 - I was able to test my code using a android emulator included with android studio. This process was the most imporant to me as I wanted to ensure a good user experience. I also tested out every orientation incase a user prefers typing with their phone held to their side. Before pushing a release I made sure to test it on real hardware. to ensure it wasn't just working on the emulator.
   
-- Consider the full app design and development process from initial planning to finalization. Where did you have to innovate to overcome a challenge?
+*Consider the full app design and development process from initial planning to finalization. Where did you have to innovate to overcome a challenge?*
+
 - A place where I really inovated was designing the editing animal. I was able to reuse a lot of the same code from my animal creation which allowed for a more rapid development.
   
-- In what specific component of your mobile app were you particularly successful in demonstrating your knowledge, skills, and experience?
+*In what specific component of your mobile app were you particularly successful in demonstrating your knowledge, skills, and experience?*
+
 - I believe the highlight of my app is the recycler view. This is something that wasn't required at all on the assignment but I knew would make for the best user experience with intuitive design. I was able to full implement this feature to my own resources as well as future proof my app as using a recycler view will give better optmization over the long run with a big data set. 

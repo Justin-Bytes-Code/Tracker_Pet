@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Tracker Pet</string>
+    <string name="Login">Login</string>
+    <string name="Email">Email</string>
+    <string name="SignUp">Sign Up</string>
+    <string name="ForgetPassword">Forget Password</string>
+    <string name="Password">Password</string>
+    <string name="Welcome">Welcome</string>
+    <string name="enable_sms_text_messages">Enable SMS Text Messages</string>
+    <string name="refresh">Refresh</string>
+    <string name="add_animal">Add Animal</string>
+    <string name="InputYourAnimalDetailsHere">Input Your Animal Details Here</string>
+    <string name="name_of_animal">Name Of Animal</string>
+    <string name="animal_species">Animal Species</string>
+    <string name="date_of_birth">Date Of Birth</string>
+    <string name="register">Register</string>
+    <string name="goal_weight_lbs">Goal Weight (lbs)</string>
+    <string name="current_weight_lbs">Current Weight (lbs)</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="species">Species</string>
+    <string name="name">Name</string>
+    <string name="date_of_birthDisplay">Date Of Birth</string>
+    <string name="Placeholder">TextView</string>
+    />
+</resources>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity5">
+
+        <!--Input Screen-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/EditAnimalInputTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="20dp"
+                android:text="@string/InputYourAnimalDetailsHere" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:padding="20dp"
+                        tools:ignore="UselessParent">
+
+                        <EditText
+                            android:id="@+id/EditNameOfAnimalET"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:autofillHints=""
+                            android:ems="15"
+                            android:hint="@string/name_of_animal"
+                            android:inputType="textFilter"
+                            android:maxLength="15" />
+
+                        <EditText
+                            android:id="@+id/EditAnimalSpeciesET"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:autofillHints=""
+                            android:ems="15"
+                            android:hint="@string/animal_species"
+                            android:inputType="textFilter"
+                            android:maxLength="15" />
+
+                        <!-- TODO - / between date of birth -->
+                        <!-- TODO - potentially make it a prompt so you just pick the month using androids built in calendar instead of typing numbers -->
+                        <EditText
+                            android:id="@+id/EditDateOfBirthET"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:autofillHints=""
+                            android:ems="15"
+                            android:hint="@string/date_of_birth"
+                            android:inputType="number"
+                            android:maxLength="15"
+                            tools:ignore="TextFields" />
+
+                        <EditText
+                            android:id="@+id/EditCurrentWeightET"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:autofillHints=""
+                            android:ems="5"
+                            android:hint="@string/current_weight_lbs"
+                            android:inputType="number"
+                            android:maxLength="5" />
+
+                        <EditText
+                            android:id="@+id/EditGoalWeightET"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:autofillHints=""
+                            android:ems="5"
+                            android:hint="@string/goal_weight_lbs"
+                            android:inputType="number"
+                            android:maxLength="5" />
+
+
+                        <!-- TODO - Isn't needed but I can't think of a more elegant solution rn. This needs to be fixed -->
+
+                        <!-- Todo - Only allow button to be pressed when all fields are filled with valid Information -->
+
+                        <TableLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            >
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center">
+
+                                <Button
+                                    android:id="@+id/EditBTN"
+                                    android:layout_width="167dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginStart="10dp"
+                                    android:text="@string/edit"
+                                    android:layout_gravity="center"
+                                    tools:ignore="ButtonStyle" />
+                                <!--                                <Button
+                                    android:id="@+id/EditBTN"
+                                    android:layout_width="167dp"
+                                    android:layout_height="50dp"
+                                    android:layout_gravity="center"
+                                    android:layout_margin="30dp"
+                                    android:text="Edit" />
+
+                                    android:id="@+id/DeleteBTN"
+                                    android:layout_width="167dp"
+                                    android:layout_height="50dp"
+                                    android:layout_gravity=""
+                                    android:layout_margin="30dp"
+                                    android:text="Delete" />-->
+                                <Button
+                                    android:id="@+id/DeleteBTN"
+                                    android:layout_width="167dp"
+                                    android:layout_height="50dp"
+                                    android:text="@string/delete"
+                                    android:layout_gravity="center"
+                                    tools:ignore="ButtonStyle" />
+                            </TableRow>
+
+                        </TableLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>

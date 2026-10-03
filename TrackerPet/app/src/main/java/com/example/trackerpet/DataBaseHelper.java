@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
-    //Animal Table
+    // Animal Table
     private static final String DATABASE_NAME = "Animals.db";
     private static final int DATABASE_VERSION = 2;
     public static final String ANIMALS_DB = "ANIMALS";
@@ -25,23 +25,23 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_ID = "ID";
 
 
-    //User Table
+    // User Table
     public static final String USERS_DB = "USERS";
     public static final String COLUMN_USER_ID = "USER_ID";
     public static final String COLUMN_USERNAME = "USERNAME";
     public static final String COLUMN_PASSWORD = "PASSWORD";
 
 
-
     public DataBaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    //First time database is accessed. Create new databases here
+
+    // Called when the database is first created.
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        //Animal Table
+        // Animal Table
         String CreateTableStatement = "CREATE TABLE " + ANIMALS_DB + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " " + COLUMN_ANIMAL_NAME
@@ -53,23 +53,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(CreateTableStatement);
 
-        //Users table
+        // Users table
         String createUsersTable = "CREATE TABLE " + USERS_DB + " (" +
                 COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_USERNAME + " TEXT UNIQUE, " +
                 COLUMN_PASSWORD + " TEXT)";
         db.execSQL(createUsersTable);
-
-
-
-
     }
 
-    //This is called if the database version changes number and prevents the app from breaking
+    // Called when the database version is upgraded.
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
+
     public boolean AddOne(Animal animal) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -83,16 +79,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         long insert = db.insert(ANIMALS_DB, null, cv);
         return insert != -1;
-
-
-
-        //return true;
     }
+
     public List<Animal> getEveryone() {
 
         List<Animal>  returnList = new ArrayList<>();
 
-        //Get Data from Database
+        // Retrieve animals from the database.
 
         String queryString = "SELECT * FROM " + ANIMALS_DB;
         
@@ -102,7 +95,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
         if (cursor.moveToFirst()) {
-            //Loop though results and create new customer objects
+            // Convert each database row into an Animal object
             do {
                 int animalID = cursor.getInt(0);
                 String animalName = cursor.getString(1);
@@ -116,22 +109,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
             } while (cursor.moveToNext());
-
-
         } else {
-            //failed do not add anything to the list
-
+            // Failed do not add anything to the list
         }
-
-        //Closes cursor and databases
+        // Closes cursor and databases
         cursor.close();
         db.close();
-
         return returnList;
-
     }
 
-    //Edits Animals
+    // Updates/Edits Animals in Database
     public boolean updateAnimal(Animal animal) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -147,7 +134,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return result > 0;
     }
 
-    //Deletes Animal
     public boolean deleteAnimal(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         int result = db.delete(ANIMALS_DB, COLUMN_ID + "=?", new String[]{String.valueOf(id)});
@@ -155,7 +141,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return result > 0; // returns true if a row was deleted
     }
 
-    // Add a new user
+    // TODO - Password is stored in plain text. This should be changed to encrypt the password as well as sanitize the input.
     public boolean addUser(String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -167,7 +153,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return insert != -1;
     }
 
-    // Check if username exists
     public boolean checkUserExists(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + USERS_DB + " WHERE USERNAME = ?", new String[]{username});
@@ -177,7 +162,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return exists;
     }
 
-    // Validate login
     public boolean validateLogin(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + USERS_DB + " WHERE USERNAME = ? AND PASSWORD = ?", new String[]{username, password});
@@ -186,8 +170,4 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.close();
         return valid;
     }
-
-
-
-
 }

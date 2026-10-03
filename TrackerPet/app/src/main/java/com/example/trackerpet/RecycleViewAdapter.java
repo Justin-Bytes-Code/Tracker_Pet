@@ -16,7 +16,6 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     private Context context;
     private List<Animal> animalList;
 
-
     public interface  OnItemClickListener {
         void onItemClick(Animal animal);
     }
@@ -26,7 +25,6 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
-
 
     public RecycleViewAdapter(Context context, List<Animal> animalList) {
         this.context = context;

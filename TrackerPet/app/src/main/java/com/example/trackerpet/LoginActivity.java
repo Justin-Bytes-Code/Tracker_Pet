@@ -12,11 +12,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     Button LoginBtn;
     Button SignUpBtn;
-
     EditText EmailET;
     EditText PasswordET;
 
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         EmailET = findViewById(R.id.EmailET);
         PasswordET = findViewById(R.id.PasswordET);
 
-        //TODO - Add code for it to check the Login Text boxes before allowing user to Login
+        // Login
         LoginBtn.setOnClickListener(v -> {
 
             String email = EmailET.getText().toString().trim();
@@ -52,15 +51,14 @@ public class MainActivity extends AppCompatActivity {
 
             if (db.validateLogin(email, password)) {
                 Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this, MainActivity2.class));
+                startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
                 finish();
             } else {
                 Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show();
             }
         });
 
-
-        //TODO - Add code for it to check the Login Text boxes before allowing user to Signup
+        // Sign Up
         SignUpBtn.setOnClickListener(v -> {
 
             String email = EmailET.getText().toString().trim();
@@ -76,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 if (db.addUser(email, password)) {
                     Toast.makeText(this, "Sign up successful!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this, MainActivity2.class));
+                    startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
                     finish();
                 } else {
                     Toast.makeText(this, "Sign up failed", Toast.LENGTH_SHORT).show();

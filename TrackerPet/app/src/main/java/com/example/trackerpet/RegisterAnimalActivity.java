@@ -12,7 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity3 extends AppCompatActivity {
+public class RegisterAnimalActivity extends AppCompatActivity {
 
     Button RegisterBTN;
     EditText NameOfAnimalET,  AnimalSpeciesET, DateOfBirthET, CurrentWeightET, GoalWeightET;
@@ -34,54 +34,35 @@ public class MainActivity3 extends AppCompatActivity {
         DateOfBirthET = findViewById(R.id.DateOfBirthET);
         CurrentWeightET = findViewById(R.id.CurrentWeightET);
         GoalWeightET = findViewById(R.id.GoalWeightET);
-        //CurrentDateET = findViewById(R.id.CurrentDateET);
-
-
-
 
         RegisterBTN.setOnClickListener(v -> {
-
-
             Animal animal;
-
             try {
                 animal = new Animal(
                         -1,
                         NameOfAnimalET.getText().toString(),
                         AnimalSpeciesET.getText().toString(),
                         DateOfBirthET.getText().toString(),
+                        // Convert the weight fields from text input into integers before creating the Animal object.
                         Integer.parseInt(CurrentWeightET.getText().toString()),
                         Integer.parseInt(GoalWeightET.getText().toString())
                 );
-                //Toast.makeText(MainActivity3.this, animal.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("AnimalInfo", animal.toString());
             }
             catch (NumberFormatException e1) {
-                Toast.makeText(MainActivity3.this, "Please Fill Out The Fields!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterAnimalActivity.this, "Please Fill Out The Fields!!", Toast.LENGTH_SHORT).show();
                 animal = new Animal(-1, "Error", "Error", "Error", 1, 1);
             }
             catch (Exception e2){
-                Toast.makeText(MainActivity3.this, "Error Found!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterAnimalActivity.this, "Error Found!", Toast.LENGTH_SHORT).show();
                 animal = new Animal(-1, "Error", "Error", "Error", 1, 1);
             }
 
-            DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity3.this);
+            DataBaseHelper dataBaseHelper = new DataBaseHelper(RegisterAnimalActivity.this);
 
             boolean success = dataBaseHelper.AddOne(animal);
 
-            Toast.makeText(MainActivity3.this, "Animal Added!", Toast.LENGTH_SHORT).show();
-
-            //Toast.makeText(MainActivity3.this, animal.toString(), Toast.LENGTH_SHORT).show();
-
-
-            //Logo Cat Debug
-            // Log.d("AnimalInfo", animal.toString());
-
-
+            Toast.makeText(RegisterAnimalActivity.this, "Animal Added!", Toast.LENGTH_SHORT).show();
         });
-
-
-
-
     }
 }

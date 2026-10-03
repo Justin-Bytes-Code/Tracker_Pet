@@ -8,6 +8,7 @@ public class Animal {
     private int CurrentWeight;
     private int GoalWeight;
 
+    // Constructor for Animal
     public Animal(int ID, String nameOfAnimal, String animalSpecies, String dateOfBirth, int currentWeight, int goalWeight) {
         this.ID = ID;
         NameOfAnimal = nameOfAnimal;
@@ -16,13 +17,6 @@ public class Animal {
         CurrentWeight = currentWeight;
         GoalWeight = goalWeight;
     }
-
-    public Animal() {
-        //Just in case we need this for later it's ready
-    }
-
-    //To string is needed for Printing
-
 
     @Override
     public String toString() {
@@ -36,7 +30,7 @@ public class Animal {
                 '}';
     }
 
-    //GETTERS AND SETTERS
+    // GETTERS AND SETTERS
     public int getID() {
         return ID;
     }

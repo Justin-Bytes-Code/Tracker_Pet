@@ -11,10 +11,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity5 extends AppCompatActivity {
+public class EditAnimalActivity extends AppCompatActivity {
 
     Button EditBTN;
-
     Button DeleteBTN;
     EditText EditNameOfAnimalET,  EditAnimalSpeciesET, EditDateOfBirthET, EditCurrentWeightET, EditGoalWeightET;
 
@@ -27,9 +26,8 @@ public class MainActivity5 extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-
-
         });
+
         EditBTN = findViewById(R.id.EditBTN);
         DeleteBTN = findViewById(R.id.DeleteBTN);
         EditNameOfAnimalET = findViewById(R.id.EditNameOfAnimalET);
@@ -38,14 +36,13 @@ public class MainActivity5 extends AppCompatActivity {
         EditCurrentWeightET = findViewById(R.id.EditCurrentWeightET);
         EditGoalWeightET = findViewById(R.id.EditGoalWeightET);
 
-        //Gets Data from selected Item
+        // Gets Data from selected Animal
         int id = getIntent().getIntExtra("ID", -1); // default -1 if not found
         String name = getIntent().getStringExtra("Name");
         String species = getIntent().getStringExtra("Species");
         String dob = getIntent().getStringExtra("DOB");
         int currentWeight = getIntent().getIntExtra("CurrentWeight", 0);
         int goalWeight = getIntent().getIntExtra("GoalWeight", 0);
-
 
         EditNameOfAnimalET.setText(name);
         EditAnimalSpeciesET.setText(species);
@@ -54,7 +51,7 @@ public class MainActivity5 extends AppCompatActivity {
         EditGoalWeightET.setText(String.valueOf(goalWeight));
 
         EditBTN.setOnClickListener(v -> {
-            DataBaseHelper db = new DataBaseHelper(MainActivity5.this);
+            DataBaseHelper db = new DataBaseHelper(EditAnimalActivity.this);
 
             Animal updatedAnimal = new Animal(
                     id,
@@ -68,27 +65,24 @@ public class MainActivity5 extends AppCompatActivity {
             boolean success = db.updateAnimal(updatedAnimal);
 
             if (success) {
-                Toast.makeText(MainActivity5.this, "Animal updated!", Toast.LENGTH_SHORT).show();
-                finish(); // Go back to MainActivity2
+                Toast.makeText(EditAnimalActivity.this, "Animal updated!", Toast.LENGTH_SHORT).show();
+                finish(); // Go back to Welcome Activity
             } else {
-                Toast.makeText(MainActivity5.this, "Update failed!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditAnimalActivity.this, "Update failed!", Toast.LENGTH_SHORT).show();
             }
         });
+
         DeleteBTN.setOnClickListener(v -> {
 
-            DataBaseHelper db = new DataBaseHelper(MainActivity5.this);
+            DataBaseHelper db = new DataBaseHelper(EditAnimalActivity.this);
             boolean success = db.deleteAnimal(id);
 
             if (success) {
-                Toast.makeText(MainActivity5.this, name + " Deleted!", Toast.LENGTH_SHORT).show();
-                finish(); // Go back to MainActivity2
+                Toast.makeText(EditAnimalActivity.this, name + " Deleted!", Toast.LENGTH_SHORT).show();
+                finish(); // Go back to Welcome Activity
             } else {
-                Toast.makeText(MainActivity5.this, name + "Delete failed!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditAnimalActivity.this, name + " Delete failed!", Toast.LENGTH_SHORT).show();
                 }
             });
-
-
     }
-
-
 }

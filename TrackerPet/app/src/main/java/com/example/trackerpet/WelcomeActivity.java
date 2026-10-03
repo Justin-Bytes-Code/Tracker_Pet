@@ -25,14 +25,13 @@ import androidx.core.content.ContextCompat;
 
 import java.util.List;
 
-public class MainActivity2 extends AppCompatActivity {
+public class WelcomeActivity extends AppCompatActivity {
 
     Button AddAnimalBtn;
     Button DeleteAnimalBtn;
     RecyclerView AnimalListRV;
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     Switch SMSSwitch;
-
 
     private RecycleViewAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -55,23 +54,19 @@ public class MainActivity2 extends AppCompatActivity {
         AnimalListRV = findViewById(R.id.AnimalListRV);
         SMSSwitch = findViewById(R.id.SMSSwitch);
 
-
-       // Displays Database
-        DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity2.this);
+        // Load animals from the database and display them in the RecyclerView.
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(WelcomeActivity.this);
         List<Animal> everyone = dataBaseHelper.getEveryone();
-
-
 
         AnimalListRV.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         AnimalListRV.setLayoutManager(layoutManager);
 
-
         mAdapter = new RecycleViewAdapter(this, everyone);
         AnimalListRV.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(animal -> {
-            Intent intent = new Intent(MainActivity2.this, MainActivity5.class);
+            Intent intent = new Intent(WelcomeActivity.this, EditAnimalActivity.class);
 
             // Pass animal data
             intent.putExtra("ID", animal.getID());
@@ -81,71 +76,59 @@ public class MainActivity2 extends AppCompatActivity {
             intent.putExtra("CurrentWeight", animal.getCurrentWeight());
             intent.putExtra("GoalWeight", animal.getGoalWeight());
 
-            // Start MainActivity5
+            // Start EditAnimalActivity
             startActivity(intent);
         });
 
         SMSSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
 
-                //TODO - change the hardcoded number so the user can enter their own number and receive notifications as android doesn't allow you to auto pull their number
-                String phoneNumber = "+15551234567"; //555-123-4567
+                // TODO: Allow the user to enter their own phone number instead of using a hardcoded value.
+                String phoneNumber = "+15551234567"; // Test Phone Number 555-123-4567
                 String message = "Check back in often to update your information about your pet!";
                 checkSmsPermission(phoneNumber, message);
             }
         });
 
-
-
-
         DeleteAnimalBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity2.this);
+                DataBaseHelper dataBaseHelper = new DataBaseHelper(WelcomeActivity.this);
                 List<Animal> everyone = dataBaseHelper.getEveryone();
 
-                //refresh RecyclerView
-                mAdapter = new RecycleViewAdapter(MainActivity2.this, everyone);
+                // Refresh the RecyclerView with the latest database data.
+                mAdapter = new RecycleViewAdapter(WelcomeActivity.this, everyone);
                 AnimalListRV.setAdapter(mAdapter);
 
                 Log.d("AnimalInfo", everyone.toString());
             }
         });
 
-
-
-
         AddAnimalBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent SecondScreen = new Intent(MainActivity2.this, MainActivity3.class);
+                Intent SecondScreen = new Intent(WelcomeActivity.this, RegisterAnimalActivity.class);
                 startActivity(SecondScreen);
 
             }
         });
     }
+
     // Load the latest animals from the database when going back to screen
     @Override
     protected void onResume() {
         super.onResume();
 
-
         DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
         List<Animal> everyone = dataBaseHelper.getEveryone();
-
 
         mAdapter = new RecycleViewAdapter(this, everyone);
         AnimalListRV.setAdapter(mAdapter);
 
-        //Refresh
-        //mAdapter.setOnItemClickListener(animal -> {
-        //    Toast.makeText(MainActivity2.this, "You clicked " + animal.getNameOfAnimal(), Toast.LENGTH_SHORT).show();
-        //});
-
         mAdapter.setOnItemClickListener(animal -> {
-            Intent intent = new Intent(MainActivity2.this, MainActivity5.class);
+            Intent intent = new Intent(WelcomeActivity.this, EditAnimalActivity.class);
             intent.putExtra("ID", animal.getID());
             intent.putExtra("Name", animal.getNameOfAnimal());
             intent.putExtra("Species", animal.getAnimalSpecies());
@@ -156,8 +139,6 @@ public class MainActivity2 extends AppCompatActivity {
         });
 
         Log.d("AnimalInfo", "RecyclerView refreshed with these values: " + everyone.toString());
-
-
 
     }
     // Check if SMS permission is granted
@@ -176,6 +157,10 @@ public class MainActivity2 extends AppCompatActivity {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phoneNumber, null, message, null, null);
             Toast.makeText(this, "SMS sent!", Toast.LENGTH_SHORT).show();
+        } catch (SecurityException e) {
+            Toast.makeText(this, "SMS permission was denied.", Toast.LENGTH_SHORT).show();
+        } catch (IllegalArgumentException e) {
+            Toast.makeText(this, "Invalid phone number or message.", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Toast.makeText(this, "SMS failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -193,7 +178,5 @@ public class MainActivity2 extends AppCompatActivity {
             }
         }
     }
-
-
 
 }
